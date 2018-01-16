@@ -1,0 +1,1 @@
+# campingcare-c--sdk
