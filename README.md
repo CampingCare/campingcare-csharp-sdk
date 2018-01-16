@@ -1,1 +1,1 @@
-# campingcare-c--sdk
+# campingcare-csharp-sdk
