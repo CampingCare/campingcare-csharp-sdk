@@ -1,0 +1,11 @@
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\obj\Debug\campingcare-csharp-sdk-tests.csprojResolveAssemblyReference.cache
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\obj\Debug\campingcare-csharp-sdk-tests.csproj.CoreCompileInputs.cache
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\campingcare-csharp-sdk-tests.exe.config
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\campingcare-csharp-sdk-tests.exe
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\campingcare-csharp-sdk-tests.pdb
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\campingcare-csharp-sdk.dll
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\campingcare-csharp-sdk.pdb
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\obj\Debug\campingcare-csharp-sdk-tests.exe
+C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk-tests\obj\Debug\campingcare-csharp-sdk-tests.pdb
