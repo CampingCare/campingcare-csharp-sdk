@@ -35,7 +35,7 @@ Initializing the Camping.care C# SDK, and setting your API key.
 Getting park information.
 
 ```php
-$park = $campingcare->get_park();
+var park = camping_care->get_park();
 ```
 
 ## API documentation ##
