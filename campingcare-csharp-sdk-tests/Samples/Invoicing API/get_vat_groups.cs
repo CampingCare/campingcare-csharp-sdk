@@ -8,20 +8,20 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class cards
+    public static class invoicing_vat_goups
     {
 
-        /*
-        * Example get cards - How to get card information information from the Camping.care API
-        * https://camping.care/developer/park/get_cards
-        */
+       /*
+       * Example vat park - How to get park information from the Camping.care API
+       * https://camping.care/developer/park/get_park
+       */
 
-        public static async void get_cards()
+        public static async void get_vat_groups()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET CARDS           ***");
+                Console.WriteLine("***         GET VAT GROUPS        ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -39,15 +39,14 @@ namespace campingcare_csharp_sdk_tests
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
-
+                var send_data = new List<KeyValuePair<string, string>>();
 
                 /*
-                * All data is returned in a cards opject
-                * The structure can be found here: https://camping.care/developer/park/get_cards.
+                * All data is returned in a vat groups opject
+                * The structure can be found here: https://camping.care/developer/park/get_vat_groups.
                 */
 
-                var data = await camping_care.get_cards(post_values);
+                var data = await camping_care.get_vat_groups(send_data);
 
                 /*
                 * In this example we print the oprions in json format in the console
@@ -71,8 +70,6 @@ namespace campingcare_csharp_sdk_tests
         {
             Console.WriteLine("Error: " + Message);
         }
-
-
 
 
     }

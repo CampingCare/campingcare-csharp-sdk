@@ -9,19 +9,20 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class invoice
+    public static class invoices
     {
+        
         /*
-        * Example get invoices - How to get a specific invoice from the Camping.care API
-        * https://camping.care/developer/invoicing/get_invoice
+        * Example get invoices - How to get invoices between a start and end date from the Camping.care API
+        * https://camping.care/developer/invoicing/get_invoices
         */
 
-        public static async void get_invoice()
+        public static async void get_invoices()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET INVOICE         ***");
+                Console.WriteLine("***           GET INVOICES        ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -34,28 +35,23 @@ namespace campingcare_csharp_sdk_tests
                 camping_care.set_api_key("YOUR API KEY");
 
                 /*
-                * Set your invoice id. It can be found by using the function get_invoices
-                * https://camping.care/developer/invoicing/get_invoice
-                */
-
-
-                int id = 342;
-
-                /*
                 * Parameters:
-                * None
+                *   start_date:		    The arrival date where reservations have to be inbetween (required)
+                *   end_date:			The departure date where reservations have to be inbetween (required)
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
-
+                var send_data = new List<KeyValuePair<string, string>>();
+                send_data.Add(new KeyValuePair<string, string>("start_date", "2017-01-01"));
+                send_data.Add(new KeyValuePair<string, string>("end_date", "2018-12-31"));
 
                 /*
                 * All data is returned in a invoice object
                 * The structure can be found here: https://camping.care/developer/invoicing/get_invoice.
                 */
 
-                var data = await camping_care.get_invoice(id, post_values);
+                var data = await camping_care.get_invoices(send_data);
+
 
                 /*
                 * In this example we print the oprions in json format on the page

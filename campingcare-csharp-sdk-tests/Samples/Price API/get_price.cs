@@ -9,20 +9,19 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class prices
+    public static class price
     {
-        
         /*
         * Example get prices - How to get all prices from the Camping.care API
-        * https://camping.care/developer/prices/get_prices
+        * https://camping.care/developer/prices/get_price
         */
 
-        public static async void get_prices()
+        public static async void get_price()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET PRICES          ***");
+                Console.WriteLine("***           GET PRICE           ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -35,25 +34,25 @@ namespace campingcare_csharp_sdk_tests
                 camping_care.set_api_key("YOUR API KEY");
 
                 /*
-                * Set your accommodation id. It can be found by using the function get_accommodations 
-                * http://camping.care/developer/accommodations/get_accommodations
+                * Set your price id. It can be found by using the function get_price
+                * http://camping.care/developer/prices/get_price
                 */
 
-                int id = 36;
+                int id = 62;
 
                 /*
                 * Parameters:
                 * None
                 *
                 */
-                var post_values = new List<KeyValuePair<string, string>>();
+                var send_data = new List<KeyValuePair<string, string>>();
 
                 /*
                 * All data is returned in a price object
                 * The structure can be found here: https://camping.care/developer/prices/get_price.
                 */
 
-                var data = await camping_care.get_prices(id, post_values);
+                var data = await camping_care.get_price(id, send_data);
 
                 /*
                 * In this example we print the oprions in json format on the page

@@ -9,19 +9,20 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class price
+    public static class contact
     {
+
         /*
-        * Example get prices - How to get all prices from the Camping.care API
-        * https://camping.care/developer/prices/get_price
+        * Example get contacts - How to get a specific contacts from the Camping.care API
+        * https://camping.care/developer/contacts/get_contact
         */
 
-        public static async void get_price()
+        public static async void get_contact()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET PRICE           ***");
+                Console.WriteLine("***          GET CONTACT          ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -34,25 +35,26 @@ namespace campingcare_csharp_sdk_tests
                 camping_care.set_api_key("YOUR API KEY");
 
                 /*
-                * Set your price id. It can be found by using the function get_price
-                * http://camping.care/developer/prices/get_price
+                * Set your contact id. It can be found by using the function get_contacts
+                * https://camping.care/developer/contacts/get_contacts
                 */
 
-                int id = 62;
+                int id = 191;
 
                 /*
                 * Parameters:
                 * None
                 *
                 */
-                var post_values = new List<KeyValuePair<string, string>>();
+
+                var send_data = new List<KeyValuePair<string, string>>();
 
                 /*
-                * All data is returned in a price object
-                * The structure can be found here: https://camping.care/developer/prices/get_price.
+                * All data is returned in a contact object
+                * The structure can be found here: https://camping.care/developer/contacts/get_contact.
                 */
 
-                var data = await camping_care.get_price(id, post_values);
+                var data = await camping_care.get_contact(id, send_data);
 
                 /*
                 * In this example we print the oprions in json format on the page

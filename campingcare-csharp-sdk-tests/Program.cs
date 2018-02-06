@@ -24,7 +24,7 @@ namespace campingcare_csharp_sdk_tests
                 ///////////////////////////////////////////////////////////////////////////
 
                 // Call get park
-                //park.get_park();
+                park.get_park();
 
                 // Call age tables
                 //age_tables.get_age_tables();
@@ -32,8 +32,7 @@ namespace campingcare_csharp_sdk_tests
                 // Call cards
                 //cards.get_cards();
 
-                // Call vat groups
-                //vat_groups.get_vat_groups();
+
 
 
                 ///////////////////////////////////////////////////////////////////////////
@@ -53,8 +52,6 @@ namespace campingcare_csharp_sdk_tests
                 // Call get availability
                 //availability.get_availability();
 
-                // Call get Prices
-                //prices.get_prices();
 
                 // Call get options
                 //options.get_options();
@@ -72,8 +69,14 @@ namespace campingcare_csharp_sdk_tests
                 // Call get reservation
                 // reservation.get_reservation();
 
+                // Call get reservation
+                reservation_options.get_reservation_options();
+
                 // Call create reservation
                 //reservation_new.create_reservation();
+
+                // Call create reservation
+                //reservation_update.update_reservation();
 
 
                 ///////////////////////////////////////////////////////////////////////////
@@ -101,6 +104,9 @@ namespace campingcare_csharp_sdk_tests
                 // Call get invoice
                 //invoice.get_invoice();
 
+                // Call vat groups
+                //invoicing_vat_goups.get_vat_groups();
+
                 ///////////////////////////////////////////////////////////////////////////
                 //////////
                 //////////              Contacts API
@@ -113,6 +119,9 @@ namespace campingcare_csharp_sdk_tests
 
                 // Call get contact
                 //contact.get_contact();
+
+                // Call get contact
+                //contact_new.create_contact();
 
 
 

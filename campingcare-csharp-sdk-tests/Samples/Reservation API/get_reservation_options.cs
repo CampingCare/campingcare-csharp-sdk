@@ -9,20 +9,20 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class contacts
+    public static class reservation_options
     {
-      
+
         /*
-        * Example get contacts - How to get a list of contacts from the Camping.care API
-        * https://camping.care/developer/contacts/get_contacts
+        * Example get options - How to get acoomodation options the Camping.care API
+        * https://camping.care/developer/accommodations/get_options.
         */
 
-        public static async void get_contacts()
+        public static async void get_reservation_options()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***          GET CONTACTS         ***");
+                Console.WriteLine("***   GET RESERATION OPTIONS      ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -33,27 +33,32 @@ namespace campingcare_csharp_sdk_tests
 
                 campingcare_api camping_care = new campingcare_api();
                 camping_care.set_api_key("YOUR API KEY");
-                
+
+                /*
+                * Set your reservation id. It can be found by using the function get_accommodations 
+                * http://camping.care/developer/reservations/get_reservations
+                */
+
+                int id = 37;
+
                 /*
                 * Parameters:
-                *   filter    		The filter can be used to filter the contact list on name, you can use the '%' to get all contacts (required)
+                *   required_only      To get the required ooptions only if a reservation id is set (optional only in combination with parameter reservation_id)
+                *
                 *
                 */
+                var send_data = new List<KeyValuePair<string, string>>();
+                send_data.Add(new KeyValuePair<string, string>("required_only", "0"));
 
-                var post_values = new List<KeyValuePair<string, string>>();
-                post_values.Add(new KeyValuePair<string, string>("filter", "%"));
-               
                 /*
-                * All data is returned in a contact opject
-                * The structure can be found here: https://camping.care/developer/contacts/get_contact.
+                * All data is returned in a option opject
+                * The structure can be found here: https://camping.care/developer/accommodations/get_reservation_options.
                 */
-
-                var data = await camping_care.get_contacts(post_values);
+                var data = await camping_care.get_reservation_options(id, send_data);
 
                 /*
                 * In this example we print the oprions in json format on the page
                 */
-
                 JObject json = JObject.Parse(data.ToString());
 
                 foreach (var pair in json)

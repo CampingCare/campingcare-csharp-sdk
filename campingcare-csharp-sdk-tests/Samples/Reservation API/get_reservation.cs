@@ -9,20 +9,19 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class contact
+    public static class reservation
     {
-
         /*
-        * Example get contacts - How to get a specific contacts from the Camping.care API
-        * https://camping.care/developer/contacts/get_contact
+        * Example get reservation - How to get a specific reservation from the Camping.care API
+        * https://camping.care/developer/reservations/get_reservation
         */
 
-        public static async void get_contact()
+        public static async void get_reservation()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***          GET CONTACT          ***");
+                Console.WriteLine("***        GET RESERVATION        ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -32,14 +31,14 @@ namespace campingcare_csharp_sdk_tests
                 */
 
                 campingcare_api camping_care = new campingcare_api();
-                camping_care.set_api_key("YOUR API KEY");
+                camping_care.set_api_key("YOUR APUI KEY");
 
                 /*
-                * Set your contact id. It can be found by using the function get_contacts
-                * https://camping.care/developer/contacts/get_contacts
+                * Set your reservation id. It can be found by using the function get_reservations
+                * http://camping.care/developer/reservations/get_reservations
                 */
 
-                int id = 191;
+                int id = 619;
 
                 /*
                 * Parameters:
@@ -47,14 +46,13 @@ namespace campingcare_csharp_sdk_tests
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
+                var send_data = new List<KeyValuePair<string, string>>();
 
                 /*
-                * All data is returned in a contact object
-                * The structure can be found here: https://camping.care/developer/contacts/get_contact.
+                * All data is returned in a reservation object
+                * The structure can be found here: https://camping.care/developer/reservations/get_reservation.
                 */
-
-                var data = await camping_care.get_contact(id, post_values);
+                var data = await camping_care.get_reservation(id, send_data);
 
                 /*
                 * In this example we print the oprions in json format on the page

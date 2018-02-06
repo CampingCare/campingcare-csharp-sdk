@@ -6,11 +6,3 @@ C:\Users\deeja\Documents\Visual Studio 2017\Projects\campingcare-csharp-sdk\camp
 C:\Users\deeja\Documents\Visual Studio 2017\Projects\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.dll
 C:\Users\deeja\Documents\Visual Studio 2017\Projects\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.pdb
 C:\Users\deeja\Documents\Visual Studio 2017\Projects\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.csprojResolveAssemblyReference.cache
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\bin\Debug\campingcare-csharp-sdk.dll
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\bin\Debug\campingcare-csharp-sdk.pdb
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\bin\Debug\Newtonsoft.Json.dll
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\bin\Debug\Newtonsoft.Json.xml
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.csproj.CoreCompileInputs.cache
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.dll
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.pdb
-C:\Projects\CampingCare\campingcare-csharp-sdk\campingcare-csharp-sdk\obj\Debug\campingcare-csharp-sdk.csprojResolveAssemblyReference.cache

@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
 using System.Net;
-using Newtonsoft.Json.Linq;
 
 namespace campingcare
 {
@@ -47,7 +45,7 @@ namespace campingcare
 
 
 
-        private async Task<object> make_api_requestAsync(string endpoint, List<KeyValuePair<string, string>> post, string method_type)
+        private async Task<object> make_api_requestAsync(string endpoint, List<KeyValuePair<string, string>> send_data, string type = "GET")
         {
             try
             {
@@ -59,31 +57,32 @@ namespace campingcare
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var httpContent = new FormUrlEncodedContent(post);
+                
 
                 HttpResponseMessage json_response;
 
-                if (method_type.ToUpper() == "POST")
+                if (type.ToUpper() == "POST")
                 {
+                    var httpContent = new FormUrlEncodedContent(send_data);
                     json_response = await client.PostAsync(api_url + endpoint, httpContent);
-                }
-                else if (method_type.ToUpper() == "GET")
-                {
-                    string get_values = "";
-                    foreach(KeyValuePair<string, string>  parameter in post)
-                    {
-                        get_values = get_values + parameter.Key + "=" + parameter.Value + "&";
-                    }
-                    json_response = await client.GetAsync(api_url + endpoint + "?" + get_values);
                 }
                 else
                 {
-                    json_response = new HttpResponseMessage();
+                    string get_values = "";
+                    foreach(KeyValuePair<string, string>  parameter in send_data)
+                    {
+                        get_values = get_values + parameter.Key + "=" + parameter.Value + "&";
+                    }
+
+                    if (get_values.Length > 1)
+                    {
+                        get_values = get_values.Substring(0, get_values.Length - 1);
+                    }
+
+                    json_response = await client.GetAsync(api_url + endpoint + "?" + get_values);
+
                 }
-
-              
-                //HttpResponseMessage json_response_get = await client.GetAsync(api_url + endpoint);
-
+                
                 HttpStatusCode httpcode = json_response.StatusCode;
 
                 if (httpcode == HttpStatusCode.InternalServerError)
@@ -120,8 +119,22 @@ namespace campingcare
                 {
                     throw new Exception("404 - Page not found");
                 }
+                else if (Convert.ToInt32(httpcode) == 230)
+                {
+                    var error_code = json_response.Content.ReadAsStringAsync().Result;
 
+                    if(error_code == "")
+                    {
+                        throw new Exception("230 - Error: We got an empty error message.");
+                    }
+                    else
+                    {
+                        throw new Exception("230 - Error: " + error_code);
+                    }
+                   
+                }
 
+                
                 throw new Exception("Unknown httpcode ("+httpcode+") ");
 
                 
@@ -139,31 +152,31 @@ namespace campingcare
 
         public async Task<object> get_park(List<KeyValuePair<string, string>> data)
         {
-            var return_data = await make_api_requestAsync("/park/", data, "POST");
+            var return_data = await make_api_requestAsync("/park/", data, "GET");
             return return_data;
         }
 
         public async Task<object> get_age_tables(List<KeyValuePair<string, string>> data)
         {
-            var return_data = await make_api_requestAsync("/park/age_tables", data, "POST");
+            var return_data = await make_api_requestAsync("/park/age_tables", data, "GET");
             return return_data;
         }
 
         public async Task<object> get_cards(List<KeyValuePair<string, string>> data)
         {
-            var return_data = await make_api_requestAsync("/park/cards", data, "POST");
+            var return_data = await make_api_requestAsync("/park/cards", data, "GET");
             return return_data;
         }
 
         public async Task<object> get_vat_groups(List<KeyValuePair<string, string>> data)
         {
-            var return_data = await make_api_requestAsync("/park/vat_groups", data, "POST");
+            var return_data = await make_api_requestAsync("/invoicing/vat_groups", data, "GET");
             return return_data;
         }
 
         public async Task<object> get_accommodations(List<KeyValuePair<string, string>> data)
         {
-            var return_data = await make_api_requestAsync("/accommodations", data, "POST");
+            var return_data = await make_api_requestAsync("/accommodations", data, "GET");
             return return_data;
         }
 
@@ -174,7 +187,7 @@ namespace campingcare
                 throw new Exception("No accommodation ID found");
             };
 
-            var return_data = await make_api_requestAsync("/accommodations/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/accommodations/" + id, data, "GET");
             return return_data;
 
         }
@@ -187,22 +200,13 @@ namespace campingcare
                 throw new Exception("No accommodation ID found");
             };
 
-            var return_data = await make_api_requestAsync("/accommodations/" + id + "/availability", data, "POST");
+            var return_data = await make_api_requestAsync("/accommodations/" + id + "/availability", data, "GET");
             return return_data;
 
         }
 
 
-        public async Task<object> get_calculate_price(int id, List<KeyValuePair<string, string>> data)
-        {
-            if (id == 0)
-            {
-                throw new Exception("No accommodation ID found");
-            };
-
-            var return_data = await make_api_requestAsync("/accommodations/" + id + "/calculate_price", data, "POST");
-            return return_data;
-        }
+       
 
         public async Task<object> get_options(int id, List<KeyValuePair<string, string>> data)
         {
@@ -211,7 +215,7 @@ namespace campingcare
                 throw new Exception("No accommodation ID found");
             };
 
-            var return_data = await make_api_requestAsync("/accommodations/" + id + "/options", data, "POST");
+            var return_data = await make_api_requestAsync("/accommodations/" + id + "/options", data, "GET");
             return return_data;
         }
 
@@ -219,7 +223,7 @@ namespace campingcare
         public async Task<object> get_reservations(List<KeyValuePair<string, string>> data)
         {
         
-            var return_data = await make_api_requestAsync("/reservations", data, "POST");
+            var return_data = await make_api_requestAsync("/reservations/", data, "GET");
             return return_data;
         }
 
@@ -230,14 +234,39 @@ namespace campingcare
                 throw new Exception("No reservation ID found");
             };
 
-            var return_data = await make_api_requestAsync("/reservations/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/reservations/" + id, data, "GET");
             return return_data;
         }
+
+        public async Task<object> get_reservation_options(int id, List<KeyValuePair<string, string>> data)
+        {
+            if (id == 0)
+            {
+                throw new Exception("No reservation ID found");
+            };
+
+            var return_data = await make_api_requestAsync("/reservations/" + id + "/options", data, "GET");
+            return return_data;
+        }
+
 
         public async Task<object> create_reservation(List<KeyValuePair<string, string>> data)
         {
 
-            var return_data = await make_api_requestAsync("/reservations/create/", data, "POST");
+            var return_data = await make_api_requestAsync("/reservations/", data, "POST");
+            return return_data;
+        }
+
+        public async Task<object> update_reservation(int id, List<KeyValuePair<string, string>> data)
+        {
+
+            var return_data = await make_api_requestAsync("/reservations/" + id, data, "POST");
+            return return_data;
+        }
+
+        public async Task<object> calculate_price(List<KeyValuePair<string, string>> data)
+        {
+            var return_data = await make_api_requestAsync("/reservations/calculate_price", data, "POST");
             return return_data;
         }
 
@@ -249,7 +278,7 @@ namespace campingcare
                 throw new Exception("No accommodation ID found");
             };
 
-            var return_data = await make_api_requestAsync("/prices/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/prices/" + id, data, "GET");
             return return_data;
         }
 
@@ -260,14 +289,14 @@ namespace campingcare
                 throw new Exception("No price ID found");
             };
 
-            var return_data = await make_api_requestAsync("/price/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/price/" + id, data, "GET");
             return return_data;
         }
 
         public async Task<object> get_invoices(List<KeyValuePair<string, string>> data)
         {
 
-            var return_data = await make_api_requestAsync("/invoicing/", data, "POST");
+            var return_data = await make_api_requestAsync("/invoicing/", data, "GET");
             return return_data;
         }
 
@@ -278,14 +307,14 @@ namespace campingcare
                 throw new Exception("No invoice ID found");
             };
 
-            var return_data = await make_api_requestAsync("/invoicing/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/invoicing/" + id, data, "GET");
             return return_data;
         }
 
         public async Task<object> get_contacts(List<KeyValuePair<string, string>> data)
         {
 
-            var return_data = await make_api_requestAsync("/contacts/", data, "POST");
+            var return_data = await make_api_requestAsync("/contacts/", data, "GET");
             return return_data;
         }
 
@@ -296,9 +325,30 @@ namespace campingcare
                 throw new Exception("No contact ID found");
             };
 
-            var return_data = await make_api_requestAsync("/contacts/" + id, data, "POST");
+            var return_data = await make_api_requestAsync("/contacts/" + id, data, "GET");
+            return return_data;
+        }
+
+        public async Task<object> create_contact(List<KeyValuePair<string, string>> data)
+        {
+            
+            var return_data = await make_api_requestAsync("/contacts/", data, "POST");
             return return_data;
         }
 
     }
+
+    public class age_table_struct
+    {
+        public int id { get; set; }
+        public int count { get; set; }
+    }
+
+    public class option_struct
+    {
+        public int id { get; set; }
+        public int count { get; set; }
+    }
+
+
 }

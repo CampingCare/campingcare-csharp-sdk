@@ -9,21 +9,22 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class invoices
+    public static class park
     {
-        
         /*
-        * Example get invoices - How to get invoices between a start and end date from the Camping.care API
-        * https://camping.care/developer/invoicing/get_invoices
+        * Example get park - How to get park information from the Camping.care API
+        * https://camping.care/developer/park/get_park
         */
 
-        public static async void get_invoices()
+        public static async void get_park()
         {
             try
             {
+
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET INVOICES        ***");
+                Console.WriteLine("***           GET PARK            ***");
                 Console.WriteLine("*************************************");
+
 
                 /*
                 * Initialize the Camping.care API SDK with your API key.
@@ -36,27 +37,23 @@ namespace campingcare_csharp_sdk_tests
 
                 /*
                 * Parameters:
-                *   start_date:		    The arrival date where reservations have to be inbetween (required)
-                *   end_date:			The departure date where reservations have to be inbetween (required)
+                * None
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
-                post_values.Add(new KeyValuePair<string, string>("start_date", "2017-01-01"));
-                post_values.Add(new KeyValuePair<string, string>("end_date", "2018-12-31"));
+                var send_data = new List<KeyValuePair<string, string>>();
 
                 /*
-                * All data is returned in a invoice object
-                * The structure can be found here: https://camping.care/developer/invoicing/get_invoice.
+                * All data is returned in a park opject
+                * The structure can be found here: https://camping.care/developer/park/get_park.
                 */
 
-                var data = await camping_care.get_invoices(post_values);
+                var data = await camping_care.get_park(send_data);
 
 
                 /*
-                * In this example we print the oprions in json format on the page
+                * In this example we print the oprions in json format in the console
                 */
-
                 JObject json = JObject.Parse(data.ToString());
 
                 foreach (var pair in json)

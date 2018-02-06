@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using campingcare;
 using Newtonsoft.Json.Linq;
 
-
 namespace campingcare_csharp_sdk_tests
 {
-    public static class reservation
+    public static class cards
     {
+
         /*
-        * Example get prices - How to get a specific reservation from the Camping.care API
-        * https://camping.care/developer/reservations/get_reservation
+        * Example get cards - How to get card information information from the Camping.care API
+        * https://camping.care/developer/park/get_cards
         */
 
-        public static async void get_reservation()
+        public static async void get_cards()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***        GET RESERVATION        ***");
+                Console.WriteLine("***           GET CARDS           ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -31,14 +31,7 @@ namespace campingcare_csharp_sdk_tests
                 */
 
                 campingcare_api camping_care = new campingcare_api();
-                camping_care.set_api_key("YOUR APUI KEY");
-
-                /*
-                * Set your reservation id. It can be found by using the function get_reservations
-                * http://camping.care/developer/reservations/get_reservations
-                */
-
-                int id = 619;
+                camping_care.set_api_key("YOUR API KEY");
 
                 /*
                 * Parameters:
@@ -46,16 +39,18 @@ namespace campingcare_csharp_sdk_tests
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
+                var send_data = new List<KeyValuePair<string, string>>();
+
 
                 /*
-                * All data is returned in a reservation object
-                * The structure can be found here: https://camping.care/developer/reservations/get_reservation.
+                * All data is returned in a cards opject
+                * The structure can be found here: https://camping.care/developer/park/get_cards.
                 */
-                var data = await camping_care.get_reservation(id, post_values);
+
+                var data = await camping_care.get_cards(send_data);
 
                 /*
-                * In this example we print the oprions in json format on the page
+                * In this example we print the oprions in json format in the console
                 */
 
                 JObject json = JObject.Parse(data.ToString());
@@ -76,5 +71,9 @@ namespace campingcare_csharp_sdk_tests
         {
             Console.WriteLine("Error: " + Message);
         }
+
+
+
+
     }
 }

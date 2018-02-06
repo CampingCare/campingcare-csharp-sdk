@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 using campingcare;
 using Newtonsoft.Json.Linq;
 
+
 namespace campingcare_csharp_sdk_tests
 {
-    public static class age_tables
+    public static class accommodations
     {
 
         /*
-        * Example get age tables - How to get age table information from the Camping.care API
-        * https://camping.care/developer/park/get_age_tables
+        * Example get accommodations - How to get all accommodations data from the Camping.care API
+        * https://camping.care/developer/accommodations/get_accommodations
         */
 
-        public static async void get_age_tables()
+        public static async void get_accommodations()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***         GET AGE TABLES        ***");
+                Console.WriteLine("***      GET ACCOMMODATIONS       ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -38,19 +39,17 @@ namespace campingcare_csharp_sdk_tests
                 * None
                 *
                 */
+                var send_data = new List<KeyValuePair<string, string>>();
 
-                var post_values = new List<KeyValuePair<string, string>>();
-                
                 /*
-                * All data is returned in a age table opject
-                * The structure can be found here: https://camping.care/developer/park/get_age_tables.
+                * All data is returned in a accommodations object
+                * The structure can be found here: https://camping.care/developer/accommodations/get_accommodations.
                 */
 
-                var data = await camping_care.get_age_tables(post_values);
-
+                var data = await camping_care.get_accommodations(send_data);
 
                 /*
-                * In this example we print the oprions in json format in the console
+                * In this example we print the oprions in json format on the page
                 */
 
                 JObject json = JObject.Parse(data.ToString());
@@ -71,7 +70,5 @@ namespace campingcare_csharp_sdk_tests
         {
             Console.WriteLine("Error: " + Message);
         }
-
-
     }
 }

@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using campingcare;
 using Newtonsoft.Json.Linq;
 
+
 namespace campingcare_csharp_sdk_tests
 {
-    public static class vat_groups
+    public static class reservations
     {
+        /*
+         * Example get reservations - How to get a specific reservation from the Camping.care API
+         * https://camping.care/developer/reservations/get_reservations
+         */
 
-       /*
-       * Example get park - How to get park information from the Camping.care API
-       * https://camping.care/developer/park/get_park
-       */
-
-        public static async void get_vat_groups()
+        public static async void get_reservations()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***         GET VAT GROUPS        ***");
+                Console.WriteLine("***       GET RESERVATIONS        ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -33,20 +33,27 @@ namespace campingcare_csharp_sdk_tests
                 campingcare_api camping_care = new campingcare_api();
                 camping_care.set_api_key("YOUR API KEY");
 
+
                 /*
                 * Parameters:
-                * None
+                * start_date:		The arrival date where reservations have to be inbetween (required)
+                * end_date:	        The departure date where reservations have to be inbetween (required)
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
+                var send_data = new List<KeyValuePair<string, string>>();
+                send_data.Add(new KeyValuePair<string, string>("start_date", "2017-01-01")); // (required)
+                send_data.Add(new KeyValuePair<string, string>("end_date", "2018-12-31")); // (required)
+
 
                 /*
-                * All data is returned in a vat groups opject
-                * The structure can be found here: https://camping.care/developer/park/get_vat_groups.
+                * All data is returned in a reservation object
+                * The structure can be found here: https://camping.care/developer/reservations/get_reservation.
                 */
 
-                var data = await camping_care.get_vat_groups(post_values);
+                var data = await camping_care.get_reservations(send_data);
+
+
 
                 /*
                 * In this example we print the oprions in json format in the console
@@ -70,7 +77,5 @@ namespace campingcare_csharp_sdk_tests
         {
             Console.WriteLine("Error: " + Message);
         }
-
-
     }
 }

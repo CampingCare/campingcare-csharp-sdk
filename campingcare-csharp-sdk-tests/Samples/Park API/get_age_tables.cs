@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 using campingcare;
 using Newtonsoft.Json.Linq;
 
-
 namespace campingcare_csharp_sdk_tests
 {
-    public static class accommodation
+    public static class age_tables
     {
 
         /*
-        * Example get accommodation - How to get accommodation information from the Camping.care API
-        * https://camping.care/developer/accommodations/get_accommodation
+        * Example get age tables - How to get age table information from the Camping.care API
+        * https://camping.care/developer/park/get_age_tables
         */
 
-        public static async void get_accommodation()
+        public static async void get_age_tables()
         {
             try
             {
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***      GET ACCOMMODATION        ***");
+                Console.WriteLine("***         GET AGE TABLES        ***");
                 Console.WriteLine("*************************************");
 
                 /*
@@ -35,26 +34,20 @@ namespace campingcare_csharp_sdk_tests
                 camping_care.set_api_key("YOUR API KEY");
 
                 /*
-                * Set your accommodation id. It can be found by using the function get_accommodations 
-                * http://camping.care/developer/accommodations/get_accommodations
-                */
-
-                int id = 123;
-
-                /*
                 * Parameters:
                 * None
                 *
                 */
-                
-                var post_values = new List<KeyValuePair<string, string>>();
 
+                var send_data = new List<KeyValuePair<string, string>>();
+                
                 /*
-                * All data is returned in a accommodation opject
-                * The structure can be found here: https://camping.care/developer/accommodations/get_accommodation.
+                * All data is returned in a age table opject
+                * The structure can be found here: https://camping.care/developer/park/get_age_tables.
                 */
 
-                var data = await camping_care.get_accommodation(id, post_values);
+                var data = await camping_care.get_age_tables(send_data);
+
 
                 /*
                 * In this example we print the oprions in json format in the console
@@ -78,5 +71,7 @@ namespace campingcare_csharp_sdk_tests
         {
             Console.WriteLine("Error: " + Message);
         }
+
+
     }
 }

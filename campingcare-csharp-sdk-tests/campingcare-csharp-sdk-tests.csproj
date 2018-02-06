@@ -45,24 +45,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\Accommodation API\get_options.cs" />
-    <Compile Include="Examples\Accommodation API\get_calculate_price.cs" />
-    <Compile Include="Examples\Price API\get_prices.cs" />
-    <Compile Include="Examples\Accommodation API\get_availability.cs" />
-    <Compile Include="Examples\Accommodation API\get_accommodation.cs" />
-    <Compile Include="Examples\Accommodation API\get_accommodations.cs" />
-    <Compile Include="Examples\Price API\get_price.cs" />
-    <Compile Include="Examples\Contacts API\get_contact.cs" />
-    <Compile Include="Examples\Contacts API\get_contacts.cs" />
-    <Compile Include="Examples\Invoicing API\get_invoice.cs" />
-    <Compile Include="Examples\Invoicing API\get_invoices.cs" />
-    <Compile Include="Examples\Park API\get_vat_groups.cs" />
-    <Compile Include="Examples\Park API\get_cards.cs" />
-    <Compile Include="Examples\Park API\get_age_tables.cs" />
-    <Compile Include="Examples\Park API\get_park.cs" />
-    <Compile Include="Examples\Reservation API\get_reservation.cs" />
-    <Compile Include="Examples\Reservation API\create_reservation.cs" />
-    <Compile Include="Examples\Reservation API\get_reservations.cs" />
+    <Compile Include="Samples\Accommodation API\get_options.cs" />
+    <Compile Include="Samples\Contacts API\create_contact.cs" />
+    <Compile Include="Samples\Reservation API\calculate_price.cs" />
+    <Compile Include="Samples\Price API\get_prices.cs" />
+    <Compile Include="Samples\Accommodation API\get_availability.cs" />
+    <Compile Include="Samples\Accommodation API\get_accommodation.cs" />
+    <Compile Include="Samples\Accommodation API\get_accommodations.cs" />
+    <Compile Include="Samples\Price API\get_price.cs" />
+    <Compile Include="Samples\Contacts API\get_contact.cs" />
+    <Compile Include="Samples\Contacts API\get_contacts.cs" />
+    <Compile Include="Samples\Invoicing API\get_invoice.cs" />
+    <Compile Include="Samples\Invoicing API\get_invoices.cs" />
+    <Compile Include="Samples\Invoicing API\get_vat_groups.cs" />
+    <Compile Include="Samples\Park API\get_cards.cs" />
+    <Compile Include="Samples\Park API\get_age_tables.cs" />
+    <Compile Include="Samples\Park API\get_park.cs" />
+    <Compile Include="Samples\Reservation API\get_reservation_options.cs" />
+    <Compile Include="Samples\Reservation API\update_reservation.cs" />
+    <Compile Include="Samples\Reservation API\get_reservation.cs" />
+    <Compile Include="Samples\Reservation API\create_reservation.cs" />
+    <Compile Include="Samples\Reservation API\get_reservations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

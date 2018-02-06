@@ -9,22 +9,21 @@ using Newtonsoft.Json.Linq;
 
 namespace campingcare_csharp_sdk_tests
 {
-    public static class park
+    public static class contacts
     {
+      
         /*
-        * Example get park - How to get park information from the Camping.care API
-        * https://camping.care/developer/park/get_park
+        * Example get contacts - How to get a list of contacts from the Camping.care API
+        * https://camping.care/developer/contacts/get_contacts
         */
 
-        public static async void get_park()
+        public static async void get_contacts()
         {
             try
             {
-
                 Console.WriteLine("*************************************");
-                Console.WriteLine("***           GET PARK            ***");
+                Console.WriteLine("***          GET CONTACTS         ***");
                 Console.WriteLine("*************************************");
-
 
                 /*
                 * Initialize the Camping.care API SDK with your API key.
@@ -37,23 +36,27 @@ namespace campingcare_csharp_sdk_tests
 
                 /*
                 * Parameters:
-                * None
+                *   offset    		start offset with contacts (required)
+                *   limit           end offset
                 *
                 */
 
-                var post_values = new List<KeyValuePair<string, string>>();
-
-                /*
-                * All data is returned in a park opject
-                * The structure can be found here: https://camping.care/developer/park/get_park.
-                */
-
-                var data = await camping_care.get_park(post_values);
+                var send_data = new List<KeyValuePair<string, string>>();
+                send_data.Add(new KeyValuePair<string, string>("offset", "1")); // start with the first dataset
+                send_data.Add(new KeyValuePair<string, string>("limit", "100")); // returns 100 contacts at the time, max. is 1000
 
 
                 /*
-                * In this example we print the oprions in json format in the console
+                * All data is returned in a contact opject
+                * The structure can be found here: https://camping.care/developer/contacts/get_contact.
                 */
+
+                var data = await camping_care.get_contacts(send_data);
+
+                /*
+                * In this example we print the oprions in json format on the page
+                */
+
                 JObject json = JObject.Parse(data.ToString());
 
                 foreach (var pair in json)
