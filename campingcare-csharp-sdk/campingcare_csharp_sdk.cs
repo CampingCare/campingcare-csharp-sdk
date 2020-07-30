@@ -13,7 +13,7 @@ namespace campingcare
     {
 
         private string api_key ; 
-	    private string api_url = "https://camping.care/api/v1/"; 
+	    private string api_url = "https://camping.care/api/v1"; 
 
        
         public bool set_api_key(string api_key)
